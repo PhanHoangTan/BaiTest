@@ -24,6 +24,12 @@ const AppFooter: React.FC = () => {
         <Row gutter={[48, 24]} className="items-start pb-6">
           {/* Thông tin liên hệ */}
           <Col xs={24} sm={24} md={8} className="pl-8 ">
+            <Title
+              level={5}
+              style={{ color: "white", textAlign: "left", opacity: 0 }}
+              className="mb-4">
+              Contact Info
+            </Title>
             <Paragraph style={{ color: "white" }} className="mb-6">
               Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum
               no sit erat lorem et magna ipsum dolore amet erat.
