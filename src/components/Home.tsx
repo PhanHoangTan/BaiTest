@@ -44,7 +44,6 @@ const Home: React.FC = () => {
       image: "https://picsum.photos/200/300?random=3",
     },
   ];
-
   const categories = [
     "Danh mục 1",
     "Danh mục 2",
@@ -52,15 +51,11 @@ const Home: React.FC = () => {
     "Danh mục 4",
     "Danh mục 5",
   ];
-
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <AppHeader />
-      
-
       <Layout>
         <AppSider isMobile={isMobile} categories={categories} />
-
         <ContentSection
           isMobile={isMobile}
           featuredItems={featuredItems}
@@ -68,7 +63,6 @@ const Home: React.FC = () => {
           setSearchTerm={setSearchTerm}
         />
       </Layout>
-
       <AppFooter />
     </Layout>
   );

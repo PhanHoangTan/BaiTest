@@ -1,12 +1,15 @@
 import React from "react";
-import { Menu, Typography, Space, Dropdown } from "antd";
+import { Typography, Space, Dropdown } from "antd";
 import type { MenuProps } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const { Text } = Typography;
 
 const Nav: React.FC = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const pagesItems: MenuProps["items"] = [
     { key: "page1", label: "Page 1" },
     { key: "page2", label: "Page 2" },
@@ -23,49 +26,67 @@ const Nav: React.FC = () => {
     backgroundColor: "#fff",
   };
 
-  const navLinkStyle: React.CSSProperties = {
+  const navLinkStyle = (isActive: boolean): React.CSSProperties => ({
     marginRight: "24px",
     fontSize: "15px",
-    color: "#666",
-    fontWeight: 500,
-    textDecoration: "none",
-  };
+    color: isActive ? "#ff7200" : "#666",
+    fontWeight: isActive ? 700 : 500,
+    textDecoration: isActive ? "none" : "none",
+    position: "relative",
+    paddingBottom: "3px",
+    borderBottom: isActive ? "2px solid #ff7200" : "none",
+  });
 
   const authLinksStyle: React.CSSProperties = {
     display: "flex",
     gap: "15px",
   };
 
+  const isActive = (path: string) => {
+    // Check for exact matches to prevent nested path highlighting
+    if (path === "/" && currentPath === "/") return true;
+    if (path === "/shop" && currentPath === "/shop") return true;
+    if (path === "/shop-detail" && currentPath === "/shop-detail") return true;
+    if (path === "/contact" && currentPath === "/contact") return true;
+    if (path === "/login" && currentPath === "/login") return true;
+    if (path === "/register" && currentPath === "/register") return true;
+
+    // For pages dropdown
+    if (path.includes("/pages") && currentPath.includes("/pages")) return true;
+
+    return false;
+  };
+
   return (
     <div style={navContainerStyle}>
       <div>
-        <Link to="/" style={navLinkStyle}>
+        <Link to="/" style={navLinkStyle(isActive("/"))}>
           Home
         </Link>
-        <Link to="/shop" style={navLinkStyle}>
+        <Link to="/shop" style={navLinkStyle(isActive("/shop"))}>
           Shop
         </Link>
-        <Link to="/shop-detail" style={navLinkStyle}>
+        <Link to="/shop-detail" style={navLinkStyle(isActive("/shop-detail"))}>
           Shop Detail
         </Link>
         <Dropdown menu={{ items: pagesItems }} placement="bottom">
-          <Text style={navLinkStyle}>
+          <Text style={navLinkStyle(currentPath.includes("/pages"))}>
             <Space>
               Pages
               <DownOutlined style={{ fontSize: "12px" }} />
             </Space>
           </Text>
         </Dropdown>
-        <Link to="/contact" style={navLinkStyle}>
+        <Link to="/contact" style={navLinkStyle(isActive("/contact"))}>
           Contact
         </Link>
       </div>
 
       <div style={authLinksStyle}>
-        <Link to="/login" style={navLinkStyle}>
+        <Link to="/login" style={navLinkStyle(isActive("/login"))}>
           Login
         </Link>
-        <Link to="/register" style={navLinkStyle}>
+        <Link to="/register" style={navLinkStyle(isActive("/register"))}>
           Register
         </Link>
       </div>
