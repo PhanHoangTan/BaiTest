@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout, Typography, Divider, Menu } from "antd";
 import type { Category } from "../models/Category";
 // import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, UpOutlined } from "@ant-design/icons";
 
 const { Sider } = Layout;
 const { Title, Paragraph } = Typography;
@@ -19,6 +20,12 @@ const AppSider: React.FC<SiderProps> = ({ isMobile, categories }) => {
     textAlign: "left",
   };
 
+  const [categoriesVisible, setCategoriesVisible] = useState(false);
+
+  const toggleCategories = () => {
+    setCategoriesVisible(!categoriesVisible);
+  };
+
   return (
     <Sider
       width={isMobile ? "0" : "25%"}
@@ -27,43 +34,55 @@ const AppSider: React.FC<SiderProps> = ({ isMobile, categories }) => {
       collapsedWidth="0"
       zeroWidthTriggerStyle={{ display: "none" }}>
       <div style={{ textAlign: "left" }}>
-        <Title
-          level={4}
+        <div
+          onClick={toggleCategories}
           style={{
             backgroundColor: "#5b1d5b",
             color: "white",
             padding: "15px",
             textAlign: "left",
             margin: 0,
+            cursor: "pointer",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}>
-          Categories
-        </Title>
-        <Menu
-          mode="vertical"
-          style={{ border: "1px solid #f0f0f0", textAlign: "left" }}>
-          {categories.map((category) => {
-            if (category.children && category.children.length > 0) {
+          <span style={{ fontSize: "18px", fontWeight: "500" }}>
+            Categories
+          </span>
+          {categoriesVisible ? <UpOutlined /> : <DownOutlined />}
+        </div>
+
+        {categoriesVisible && (
+          <Menu
+            mode="vertical"
+            style={{ border: "1px solid #f0f0f0", textAlign: "left" }}>
+            {categories.map((category) => {
+              if (category.children && category.children.length > 0) {
+                return (
+                  <SubMenu
+                    key={category.id}
+                    title={
+                      <span style={{ textAlign: "left", fontWeight: "normal" }}>
+                        {category.name}
+                      </span>
+                    }>
+                    {category.children.map((child) => (
+                      <Menu.Item key={child.id} style={{ textAlign: "left" }}>
+                        <a href={`#${child.slug}`}>{child.name}</a>
+                      </Menu.Item>
+                    ))}
+                  </SubMenu>
+                );
+              }
               return (
-                <SubMenu
-                  key={category.id}
-                  title={
-                    <span style={{ textAlign: "left" }}>{category.name}</span>
-                  }>
-                  {category.children.map((child) => (
-                    <Menu.Item key={child.id} style={{ textAlign: "left" }}>
-                      <a href={`#${child.slug}`}>{child.name}</a>
-                    </Menu.Item>
-                  ))}
-                </SubMenu>
+                <Menu.Item key={category.id} style={{ textAlign: "left" }}>
+                  <a href={`#${category.slug}`}>{category.name}</a>
+                </Menu.Item>
               );
-            }
-            return (
-              <Menu.Item key={category.id} style={{ textAlign: "left" }}>
-                <a href={`#${category.slug}`}>{category.name}</a>
-              </Menu.Item>
-            );
-          })}
-        </Menu>
+            })}
+          </Menu>
+        )}
       </div>
 
       <Divider />
