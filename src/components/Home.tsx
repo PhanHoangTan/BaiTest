@@ -56,6 +56,7 @@ const Home: React.FC = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <AppHeader />
+      
 
       <Layout>
         <AppSider isMobile={isMobile} categories={categories} />

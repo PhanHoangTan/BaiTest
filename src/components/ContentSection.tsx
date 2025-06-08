@@ -16,6 +16,7 @@ import {
   faSearch,
   faShop,
 } from "@fortawesome/free-solid-svg-icons";
+import Nav from "./Nav";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
@@ -133,7 +134,7 @@ const ContentSection: React.FC<ContentProps> = ({
           </div>
         </div>
       </div>
-
+      <Nav />
       <Title level={2}>Sản phẩm nổi bật</Title>
       <div
         style={{
