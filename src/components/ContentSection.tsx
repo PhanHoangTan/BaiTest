@@ -42,7 +42,6 @@ const ContentSection: React.FC<ContentProps> = ({
   setSearchTerm,
 }) => {
   const contentStyle: React.CSSProperties = {
-    padding: "10px",
     minHeight: "calc(100vh - 134px)",
     background: "#fff",
   };
