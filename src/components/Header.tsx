@@ -1,13 +1,13 @@
 import React from "react";
-import {  Typography } from "antd";
+import { Typography } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  FacebookFilled,
-  TwitterOutlined,
-  LinkedinFilled,
-  InstagramOutlined,
-  YoutubeFilled,
-} from "@ant-design/icons";
-
+  faFacebookF,
+  faTwitter,
+  faLinkedinIn,
+  faInstagram,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 const { Link } = Typography;
 
@@ -24,7 +24,6 @@ const AppHeader: React.FC = () => {
     justifyContent: "space-between",
     alignItems: "center",
   };
-
 
   const linkStyle: React.CSSProperties = {
     color: "white",
@@ -58,19 +57,19 @@ const AppHeader: React.FC = () => {
 
         <div>
           <a href="#" aria-label="Facebook">
-            <FacebookFilled style={socialIconStyle} />
+            <FontAwesomeIcon icon={faFacebookF} style={socialIconStyle} />
           </a>
           <a href="#" aria-label="Twitter">
-            <TwitterOutlined style={socialIconStyle} />
+            <FontAwesomeIcon icon={faTwitter} style={socialIconStyle} />
           </a>
           <a href="#" aria-label="LinkedIn">
-            <LinkedinFilled style={socialIconStyle} />
+            <FontAwesomeIcon icon={faLinkedinIn} style={socialIconStyle} />
           </a>
           <a href="#" aria-label="Instagram">
-            <InstagramOutlined style={socialIconStyle} />
+            <FontAwesomeIcon icon={faInstagram} style={socialIconStyle} />
           </a>
           <a href="#" aria-label="YouTube">
-            <YoutubeFilled style={socialIconStyle} />
+            <FontAwesomeIcon icon={faYoutube} style={socialIconStyle} />
           </a>
         </div>
       </div>

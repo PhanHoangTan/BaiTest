@@ -9,11 +9,13 @@ import {
   Button,
   Input,
 } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  ShoppingCartOutlined,
-  SearchOutlined,
-  HeartOutlined,
-} from "@ant-design/icons";
+  faCartShopping,
+  faHeart,
+  faSearch,
+  faShop,
+} from "@fortawesome/free-solid-svg-icons";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
@@ -72,8 +74,9 @@ const ContentSection: React.FC<ContentProps> = ({
   };
 
   const actionIconStyle: React.CSSProperties = {
-    fontSize: "20px",
+    fontSize: "22px",
     color: themeColor,
+    marginRight: "2px",
   };
 
   const iconBoxStyle: React.CSSProperties = {
@@ -107,7 +110,7 @@ const ContentSection: React.FC<ContentProps> = ({
             suffix={
               <Button
                 type="text"
-                icon={<SearchOutlined style={iconStyle} />}
+                icon={<FontAwesomeIcon icon={faSearch} style={iconStyle} />}
                 style={{ border: "none" }}
               />
             }
@@ -122,11 +125,11 @@ const ContentSection: React.FC<ContentProps> = ({
             flex: 0,
           }}>
           <div style={iconBoxStyle}>
-            <HeartOutlined style={actionIconStyle} />
+            <FontAwesomeIcon icon={faHeart} style={actionIconStyle} />
             <span style={countStyle}>0</span>
           </div>
           <div style={iconBoxStyle}>
-            <ShoppingCartOutlined style={actionIconStyle} />
+            <FontAwesomeIcon icon={faCartShopping} style={actionIconStyle} />
             <span style={countStyle}>0</span>
           </div>
         </div>
@@ -186,7 +189,7 @@ const ContentSection: React.FC<ContentProps> = ({
                 avatar={
                   <Avatar
                     style={{ backgroundColor: "#1890ff" }}
-                    icon={<ShoppingCartOutlined />}
+                    icon={<FontAwesomeIcon icon={faShop} />}
                   />
                 }
                 title={item.title}
