@@ -1,9 +1,26 @@
 import React from "react";
-import { Layout, Typography, Card, List, Avatar, Divider, Button } from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import {
+  Layout,
+  Typography,
+  Card,
+  List,
+  Avatar,
+  Divider,
+  Button,
+  Input,
+  Badge,
+} from "antd";
+import {
+  ShoppingCartOutlined,
+  SearchOutlined,
+  HeartOutlined,
+} from "@ant-design/icons";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
+
+// Theme color
+const themeColor = "#5b1d5b";
 
 interface ContentProps {
   isMobile: boolean;
@@ -13,11 +30,15 @@ interface ContentProps {
     description: string;
     image: string;
   }[];
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
 }
 
 const ContentSection: React.FC<ContentProps> = ({
   isMobile,
   featuredItems,
+  searchTerm,
+  setSearchTerm,
 }) => {
   const contentStyle: React.CSSProperties = {
     padding: "20px",
@@ -25,8 +46,74 @@ const ContentSection: React.FC<ContentProps> = ({
     background: "#fff",
   };
 
+  // Styles for search section
+  const searchSectionStyle: React.CSSProperties = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "15px 0",
+    marginBottom: "20px",
+    borderBottom: "1px solid #eee",
+  };
+
+  const searchBoxStyle: React.CSSProperties = {
+    width: "100%",
+    maxWidth: "600px",
+  };
+
+  const searchInputStyle: React.CSSProperties = {
+    borderRadius: "4px",
+    borderColor: themeColor,
+  };
+
+  const iconStyle: React.CSSProperties = {
+    color: themeColor,
+    fontSize: "18px",
+  };
+
+  const actionIconStyle: React.CSSProperties = {
+    fontSize: "24px",
+    color: themeColor,
+  };
+
   return (
     <Content style={contentStyle}>
+      {/* Search section */}
+      <div style={searchSectionStyle}>
+        {/* Search bar */}
+        <div style={searchBoxStyle}>
+          <Input
+            placeholder="Search for products"
+            style={searchInputStyle}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            size="large"
+            suffix={
+              <Button
+                type="text"
+                icon={<SearchOutlined style={iconStyle} />}
+                style={{ border: "none" }}
+              />
+            }
+          />
+        </div>
+
+        {/* Cart and Wishlist */}
+        <div
+          style={{
+            display: "flex",
+            gap: "20px",
+            flex: 0,
+          }}>
+          <Badge count={0} showZero color={themeColor}>
+            <HeartOutlined style={actionIconStyle} />
+          </Badge>
+          <Badge count={0} showZero color={themeColor}>
+            <ShoppingCartOutlined style={actionIconStyle} />
+          </Badge>
+        </div>
+      </div>
+
       <Title level={2}>Sản phẩm nổi bật</Title>
       <div
         style={{

@@ -1,9 +1,6 @@
 import React from "react";
-import { Layout, Input, Button, Badge, Typography } from "antd";
+import {  Typography } from "antd";
 import {
-  SearchOutlined,
-  HeartOutlined,
-  ShoppingCartOutlined,
   FacebookFilled,
   TwitterOutlined,
   LinkedinFilled,
@@ -11,15 +8,10 @@ import {
   YoutubeFilled,
 } from "@ant-design/icons";
 
-const { Header } = Layout;
+
 const { Link } = Typography;
 
-interface HeaderProps {
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-}
-
-const AppHeader: React.FC<HeaderProps> = ({ searchTerm, setSearchTerm }) => {
+const AppHeader: React.FC = () => {
   // Theme color
   const themeColor = "#5b1d5b";
 
@@ -33,15 +25,6 @@ const AppHeader: React.FC<HeaderProps> = ({ searchTerm, setSearchTerm }) => {
     alignItems: "center",
   };
 
-  const mainHeaderStyle: React.CSSProperties = {
-    background: "#fff",
-    padding: "15px 20px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-    zIndex: 1,
-  };
 
   const linkStyle: React.CSSProperties = {
     color: "white",
@@ -53,26 +36,6 @@ const AppHeader: React.FC<HeaderProps> = ({ searchTerm, setSearchTerm }) => {
     color: "white",
     fontSize: "16px",
     margin: "0 8px",
-  };
-
-  const searchBoxStyle: React.CSSProperties = {
-    width: "100%",
-    maxWidth: "600px",
-  };
-
-  const searchInputStyle: React.CSSProperties = {
-    borderRadius: "4px",
-    borderColor: themeColor,
-  };
-
-  const iconStyle: React.CSSProperties = {
-    color: themeColor,
-    fontSize: "18px",
-  };
-
-  const actionIconStyle: React.CSSProperties = {
-    fontSize: "24px",
-    color: themeColor,
   };
 
   return (
@@ -111,46 +74,6 @@ const AppHeader: React.FC<HeaderProps> = ({ searchTerm, setSearchTerm }) => {
           </a>
         </div>
       </div>
-
-      {/* Main Header */}
-      <Header style={mainHeaderStyle}>
-        {/* Logo area (left) */}
-        <div style={{ flex: 1 }}>{/* Logo placeholder */}</div>
-
-        {/* Search bar (center) */}
-        <div style={searchBoxStyle}>
-          <Input
-            placeholder="Search for products"
-            style={searchInputStyle}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            size="large"
-            suffix={
-              <Button
-                type="text"
-                icon={<SearchOutlined style={iconStyle} />}
-                style={{ border: "none" }}
-              />
-            }
-          />
-        </div>
-
-        {/* Cart and Wishlist (right) */}
-        <div
-          style={{
-            display: "flex",
-            gap: "20px",
-            flex: 1,
-            justifyContent: "flex-end",
-          }}>
-          <Badge count={0} showZero color={themeColor}>
-            <HeartOutlined style={actionIconStyle} />
-          </Badge>
-          <Badge count={0} showZero color={themeColor}>
-            <ShoppingCartOutlined style={actionIconStyle} />
-          </Badge>
-        </div>
-      </Header>
     </>
   );
 };

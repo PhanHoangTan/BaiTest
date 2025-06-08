@@ -55,12 +55,17 @@ const Home: React.FC = () => {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <AppHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <AppHeader />
 
       <Layout>
         <AppSider isMobile={isMobile} categories={categories} />
 
-        <ContentSection isMobile={isMobile} featuredItems={featuredItems} />
+        <ContentSection
+          isMobile={isMobile}
+          featuredItems={featuredItems}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
       </Layout>
 
       <AppFooter />
