@@ -4,9 +4,9 @@ import {
   SearchOutlined,
   HeartOutlined,
   ShoppingCartOutlined,
-  FacebookOutlined,
+  FacebookFilled,
   TwitterOutlined,
-  LinkedinOutlined,
+  LinkedinFilled,
   InstagramOutlined,
   YoutubeFilled,
 } from "@ant-design/icons";
@@ -20,9 +20,12 @@ interface HeaderProps {
 }
 
 const AppHeader: React.FC<HeaderProps> = ({ searchTerm, setSearchTerm }) => {
+  // Theme color
+  const themeColor = "#5b1d5b";
+
   // Styles
   const topHeaderStyle: React.CSSProperties = {
-    background: "#5b1d5b",
+    background: themeColor,
     padding: "8px 20px",
     color: "white",
     display: "flex",
@@ -59,6 +62,17 @@ const AppHeader: React.FC<HeaderProps> = ({ searchTerm, setSearchTerm }) => {
 
   const searchInputStyle: React.CSSProperties = {
     borderRadius: "4px",
+    borderColor: themeColor,
+  };
+
+  const iconStyle: React.CSSProperties = {
+    color: themeColor,
+    fontSize: "18px",
+  };
+
+  const actionIconStyle: React.CSSProperties = {
+    fontSize: "24px",
+    color: themeColor,
   };
 
   return (
@@ -81,13 +95,13 @@ const AppHeader: React.FC<HeaderProps> = ({ searchTerm, setSearchTerm }) => {
 
         <div>
           <a href="#" aria-label="Facebook">
-            <FacebookOutlined style={socialIconStyle} />
+            <FacebookFilled style={socialIconStyle} />
           </a>
           <a href="#" aria-label="Twitter">
             <TwitterOutlined style={socialIconStyle} />
           </a>
           <a href="#" aria-label="LinkedIn">
-            <LinkedinOutlined style={socialIconStyle} />
+            <LinkedinFilled style={socialIconStyle} />
           </a>
           <a href="#" aria-label="Instagram">
             <InstagramOutlined style={socialIconStyle} />
@@ -107,16 +121,15 @@ const AppHeader: React.FC<HeaderProps> = ({ searchTerm, setSearchTerm }) => {
         <div style={searchBoxStyle}>
           <Input
             placeholder="Search for products"
-            prefix={<SearchOutlined />}
             style={searchInputStyle}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             size="large"
             suffix={
               <Button
-                type="primary"
-                icon={<SearchOutlined />}
-                style={{ border: "none", background: "transparent" }}
+                type="text"
+                icon={<SearchOutlined style={iconStyle} />}
+                style={{ border: "none" }}
               />
             }
           />
@@ -130,11 +143,11 @@ const AppHeader: React.FC<HeaderProps> = ({ searchTerm, setSearchTerm }) => {
             flex: 1,
             justifyContent: "flex-end",
           }}>
-          <Badge count={0} showZero>
-            <HeartOutlined style={{ fontSize: "24px", color: "#666" }} />
+          <Badge count={0} showZero color={themeColor}>
+            <HeartOutlined style={actionIconStyle} />
           </Badge>
-          <Badge count={0} showZero>
-            <ShoppingCartOutlined style={{ fontSize: "24px", color: "#666" }} />
+          <Badge count={0} showZero color={themeColor}>
+            <ShoppingCartOutlined style={actionIconStyle} />
           </Badge>
         </div>
       </Header>
