@@ -41,7 +41,7 @@ const ContentSection: React.FC<ContentProps> = ({
   setSearchTerm,
 }) => {
   const contentStyle: React.CSSProperties = {
-    padding: "20px",
+    padding: "10px",
     minHeight: "calc(100vh - 134px)",
     background: "#fff",
   };
@@ -51,9 +51,10 @@ const ContentSection: React.FC<ContentProps> = ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "15px 0",
-    marginBottom: "20px",
+    padding: "10px 0",
+    marginBottom: "10px",
     borderBottom: "1px solid #eee",
+    marginRight: "20px",
   };
 
   const searchBoxStyle: React.CSSProperties = {
