@@ -28,34 +28,54 @@ const AppFooter: React.FC = () => {
               Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum
               no sit erat lorem et magna ipsum dolore amet erat.
             </Paragraph>
-            <div className="space-y-2">
-              <div className="flex items-start">
+            <div
+              className="space-y-2.5"
+              style={{ gap: "10px", display: "flex", flexDirection: "column" }}>
+              <div className="flex items-center">
                 <FontAwesomeIcon
                   icon={faMapMarkerAlt}
-                  className="mb-2 mr-4"
-                  style={{ color: "white" }}
+                  style={{
+                    marginRight: "6px",
+                    color: "white",
+                    lineHeight: "1",
+                    fontSize: "16px",
+                  }}
                 />
-                <Paragraph style={{ color: "white" }} className="m-0">
+                <Paragraph
+                  style={{ color: "white", margin: 0, lineHeight: "1" }}
+                  className="leading-none">
                   123 Street, New York, USA
                 </Paragraph>
               </div>
-              <div className="flex items-start">
+              <div className="flex items-center">
                 <FontAwesomeIcon
                   icon={faEnvelope}
-                  className="mt-1 mr-4"
-                  style={{ color: "white" }}
+                  style={{
+                    marginRight: "6px",
+                    color: "white",
+                    lineHeight: "1",
+                    fontSize: "16px",
+                  }}
                 />
-                <Paragraph style={{ color: "white" }} className="m-0">
+                <Paragraph
+                  style={{ color: "white", margin: 0, lineHeight: "1" }}
+                  className="leading-none">
                   info@example.com
                 </Paragraph>
               </div>
-              <div className="flex items-start">
+              <div className="flex items-center">
                 <FontAwesomeIcon
                   icon={faPhone}
-                  className="mt-1 mr-4"
-                  style={{ color: "white" }}
+                  style={{
+                    marginRight: "6px",
+                    color: "white",
+                    lineHeight: "1",
+                    fontSize: "16px",
+                  }}
                 />
-                <Paragraph style={{ color: "white" }} className="m-0">
+                <Paragraph
+                  style={{ color: "white", margin: 0, lineHeight: "1" }}
+                  className="leading-none">
                   +012 345 67890
                 </Paragraph>
               </div>
@@ -70,7 +90,9 @@ const AppFooter: React.FC = () => {
               className="mb-4">
               Quick Links
             </Title>
-            <div className="space-y-2">
+            <div
+              className="space-y-2.5"
+              style={{ gap: "10px", display: "flex", flexDirection: "column" }}>
               <div className="flex items-center">
                 <RightOutlined style={{ color: "white" }} className="mr-4" />
                 <a
@@ -136,7 +158,9 @@ const AppFooter: React.FC = () => {
               className="mb-4">
               Quick Links
             </Title>
-            <div className="space-y-2">
+            <div
+              className="space-y-2.5"
+              style={{ gap: "10px", display: "flex", flexDirection: "column" }}>
               <div className="flex items-center">
                 <RightOutlined style={{ color: "white" }} className="mr-4" />
                 <a
