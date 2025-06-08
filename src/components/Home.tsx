@@ -6,6 +6,7 @@ import AppHeader from "./Header";
 import AppSider from "./Sider";
 import ContentSection from "./ContentSection";
 import AppFooter from "./Footer";
+import { categories } from "../models/Category";
 
 const Home: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -44,13 +45,7 @@ const Home: React.FC = () => {
       image: "https://picsum.photos/200/300?random=3",
     },
   ];
-  const categories = [
-    "Danh mục 1",
-    "Danh mục 2",
-    "Danh mục 3",
-    "Danh mục 4",
-    "Danh mục 5",
-  ];
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <AppHeader />
