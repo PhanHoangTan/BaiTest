@@ -8,7 +8,6 @@ import {
   Divider,
   Button,
   Input,
-  Badge,
 } from "antd";
 import {
   ShoppingCartOutlined,
@@ -73,8 +72,24 @@ const ContentSection: React.FC<ContentProps> = ({
   };
 
   const actionIconStyle: React.CSSProperties = {
-    fontSize: "24px",
+    fontSize: "20px",
     color: themeColor,
+  };
+
+  const iconBoxStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    padding: "8px 12px",
+    background: "#ffffff",
+    border: "1px solid #e0e0e0",
+    borderRadius: "4px",
+    boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+  };
+
+  const countStyle: React.CSSProperties = {
+    fontSize: "14px",
+    color: "#999",
+    marginLeft: "5px",
   };
 
   return (
@@ -106,12 +121,14 @@ const ContentSection: React.FC<ContentProps> = ({
             gap: "20px",
             flex: 0,
           }}>
-          <Badge count={0} showZero color={themeColor}>
+          <div style={iconBoxStyle}>
             <HeartOutlined style={actionIconStyle} />
-          </Badge>
-          <Badge count={0} showZero color={themeColor}>
+            <span style={countStyle}>0</span>
+          </div>
+          <div style={iconBoxStyle}>
             <ShoppingCartOutlined style={actionIconStyle} />
-          </Badge>
+            <span style={countStyle}>0</span>
+          </div>
         </div>
       </div>
 
