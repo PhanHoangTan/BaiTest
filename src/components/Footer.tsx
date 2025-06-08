@@ -21,9 +21,9 @@ const AppFooter: React.FC = () => {
   return (
     <Footer className="bg-[#5b1d5b] text-white p-6" style={{ color: "white" }}>
       <div className="max-w-7xl mx-auto">
-        <Row gutter={[48, 24]} className="pb-6">
+        <Row gutter={[48, 24]} className="items-start pb-6">
           {/* Thông tin liên hệ */}
-          <Col xs={24} sm={24} md={8} className="pl-8">
+          <Col xs={24} sm={24} md={8} className="pl-8 ">
             <Paragraph style={{ color: "white" }} className="mb-6">
               Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum
               no sit erat lorem et magna ipsum dolore amet erat.
@@ -83,7 +83,7 @@ const AppFooter: React.FC = () => {
           </Col>
 
           {/* Quick Links - Column 1 */}
-          <Col xs={24} sm={12} md={8} className="pl-16">
+          <Col xs={24} sm={12} md={8} className="pl-8">
             <Title
               level={5}
               style={{ color: "white", textAlign: "left" }}
@@ -151,7 +151,7 @@ const AppFooter: React.FC = () => {
           </Col>
 
           {/* Quick Links - Column 2 */}
-          <Col xs={24} sm={12} md={8} className="pl-16">
+          <Col xs={24} sm={12} md={8} className="pl-8">
             <Title
               level={5}
               style={{ color: "white", textAlign: "left" }}
@@ -229,7 +229,7 @@ const AppFooter: React.FC = () => {
               Distributed By ThemeWagon
             </Paragraph>
           </div>
-          <div className="flex gap-2">
+          <div className="flex" style={{ gap: "6px" }}>
             <FontAwesomeIcon
               icon={faCcVisaBrand}
               size="2x"
