@@ -70,6 +70,20 @@ const SearchSection: React.FC<SearchSectionProps> = ({
     marginLeft: "5px",
   };
 
+  // Handle Enter key press
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+      setSearchTerm(""); // Clear the input after search
+    }
+  };
+
+  // Modified search handler to clear input after search
+  const handleSearchAndClear = () => {
+    handleSearch();
+    setSearchTerm(""); // Clear the input after search
+  };
+
   return (
     <div style={searchSectionStyle}>
       {/* Search bar */}
@@ -79,13 +93,14 @@ const SearchSection: React.FC<SearchSectionProps> = ({
           style={searchInputStyle}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyPress={handleKeyPress}
           size="large"
           suffix={
             <Button
               type="text"
               icon={<FontAwesomeIcon icon={faSearch} style={iconStyle} />}
               style={{ border: "none" }}
-              onClick={handleSearch}
+              onClick={handleSearchAndClear} // Use the new handler
             />
           }
         />
