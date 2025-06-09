@@ -1,25 +1,14 @@
 import React from "react";
-import {
-  Layout,
-  Typography,
-  Card,
-  List,
-  Avatar,
-  Divider,
-  Button,
-  Input,
-} from "antd";
+import { Layout, Button, Input, Carousel, Row, Col } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
   faHeart,
   faSearch,
-  faShop,
 } from "@fortawesome/free-solid-svg-icons";
 import Nav from "./Nav";
 
 const { Content } = Layout;
-const { Title, Paragraph } = Typography;
 
 // Theme color
 const themeColor = "#5b1d5b";
@@ -37,8 +26,6 @@ interface ContentProps {
 }
 
 const ContentSection: React.FC<ContentProps> = ({
-  isMobile,
-  featuredItems,
   searchTerm,
   setSearchTerm,
 }) => {
@@ -95,6 +82,78 @@ const ContentSection: React.FC<ContentProps> = ({
     marginLeft: "5px",
   };
 
+  // Banner styles
+  const bannerStyle: React.CSSProperties = {
+    position: "relative",
+    height: "300px",
+    overflow: "hidden",
+  };
+
+  const bannerContentStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    textAlign: "center",
+    color: "#fff",
+    zIndex: 2,
+  };
+
+  const bannerTitleStyle: React.CSSProperties = {
+    fontSize: "42px",
+    fontWeight: "bold",
+    margin: "10px 0",
+  };
+
+  const bannerSubtitleStyle: React.CSSProperties = {
+    fontSize: "18px",
+    marginBottom: "20px",
+  };
+
+  const shopButtonStyle: React.CSSProperties = {
+    backgroundColor: "transparent",
+    color: "#000",
+    borderRadius: "4px",
+    padding: "8px 24px",
+    fontWeight: "bold",
+    border: "1px solid #ff7200",
+  };
+
+  // Collection styles
+  const collectionStyle: React.CSSProperties = {
+    padding: "20px",
+    margin: "20px 0",
+  };
+
+  const collectionOverlayStyle: React.CSSProperties = {
+    position: "relative",
+    height: "200px",
+    borderRadius: "4px",
+    overflow: "hidden",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
+  const collectionContentStyle: React.CSSProperties = {
+    position: "absolute",
+    bottom: "20px",
+    left: "20px",
+  };
+
+  const collectionTextStyle: React.CSSProperties = {
+    color: "#333",
+    fontSize: "13px",
+    fontWeight: "bold",
+    marginBottom: "5px",
+  };
+
+  const collectionTitleStyle: React.CSSProperties = {
+    fontSize: "22px",
+    fontWeight: "bold",
+    marginBottom: "15px",
+    color: "#333",
+  };
+
   return (
     <Content style={contentStyle}>
       {/* Search section */}
@@ -135,70 +194,109 @@ const ContentSection: React.FC<ContentProps> = ({
         </div>
       </div>
       <Nav />
-      <Title level={2}>Sản phẩm nổi bật</Title>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-          gap: "20px",
-        }}>
-        {featuredItems.map((item) => (
-          <Card
-            key={item.id}
-            hoverable
-            cover={<img alt={item.title} src={item.image} />}>
-            <Card.Meta title={item.title} description={item.description} />
-            <Button type="primary" style={{ marginTop: "15px" }}>
-              Xem chi tiết
-            </Button>
-          </Card>
-        ))}
-      </div>
 
-      <Divider />
+      {/* Banner Section */}
+      <Carousel autoplay autoplaySpeed={3000} effect="fade">
+        <div>
+          <div
+            style={{
+              ...bannerStyle,
+              backgroundImage:
+                'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200")',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}>
+            <div style={bannerContentStyle}>
+              <div style={bannerSubtitleStyle}>10% OFF YOUR FIRST ORDER</div>
+              <h2 style={bannerTitleStyle}>Reasonable Price</h2>
+              <Button style={shopButtonStyle}>Shop Now</Button>
+            </div>
+          </div>
+        </div>
 
-      <Title level={2}>Chào mừng đến với MVC Shop</Title>
-      <Paragraph>
-        Chúng tôi là nơi cung cấp các sản phẩm chất lượng cao với dịch vụ khách
-        hàng xuất sắc. Với nhiều năm kinh nghiệm trong ngành, chúng tôi cam kết
-        mang đến cho khách hàng những trải nghiệm mua sắm tốt nhất.
-      </Paragraph>
+        <div>
+          <div
+            style={{
+              ...bannerStyle,
+              backgroundImage:
+                'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200")',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}>
+            <div style={bannerContentStyle}>
+              <div style={bannerSubtitleStyle}>NEW SEASON ARRIVALS</div>
+              <h2 style={bannerTitleStyle}>Summer Collection</h2>
+              <Button style={shopButtonStyle}>Shop Now</Button>
+            </div>
+          </div>
+        </div>
 
-      <div style={{ marginTop: "30px" }}>
-        <Title level={3}>Tại sao chọn chúng tôi?</Title>
-        <List
-          itemLayout="horizontal"
-          dataSource={[
-            {
-              title: "Sản phẩm chất lượng cao",
-              description: "Chúng tôi chỉ cung cấp những sản phẩm tốt nhất",
-            },
-            {
-              title: "Giá cả cạnh tranh",
-              description:
-                "Giá tốt nhất trên thị trường cho các sản phẩm chất lượng",
-            },
-            {
-              title: "Giao hàng nhanh chóng",
-              description: "Đảm bảo giao hàng đúng hẹn và an toàn",
-            },
-          ]}
-          renderItem={(item) => (
-            <List.Item>
-              <List.Item.Meta
-                avatar={
-                  <Avatar
-                    style={{ backgroundColor: "#1890ff" }}
-                    icon={<FontAwesomeIcon icon={faShop} />}
-                  />
-                }
-                title={item.title}
-                description={item.description}
-              />
-            </List.Item>
-          )}
-        />
-      </div>
+        <div>
+          <div
+            style={{
+              ...bannerStyle,
+              backgroundImage:
+                'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200")',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}>
+            <div style={bannerContentStyle}>
+              <div style={bannerSubtitleStyle}>SPECIAL OFFER</div>
+              <h2 style={bannerTitleStyle}>Elegant Style</h2>
+              <Button style={shopButtonStyle}>Shop Now</Button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div
+            style={{
+              ...bannerStyle,
+              backgroundImage:
+                'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200")',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}>
+            <div style={bannerContentStyle}>
+              <div style={bannerSubtitleStyle}>PREMIUM QUALITY</div>
+              <h2 style={bannerTitleStyle}>Designer Collection</h2>
+              <Button style={shopButtonStyle}>Shop Now</Button>
+            </div>
+          </div>
+        </div>
+      </Carousel>
+
+      {/* Collections Section */}
+      <Row gutter={20} style={collectionStyle}>
+        <Col xs={24} md={12}>
+          <div
+            style={{
+              ...collectionOverlayStyle,
+              backgroundImage:
+                'url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=720")',
+            }}>
+            <div style={collectionContentStyle}>
+              <div style={collectionTextStyle}>PREFER CUSTOMER 2025</div>
+              <h3 style={collectionTitleStyle}>Winter Collection</h3>
+              <Button style={shopButtonStyle}>Shop Now</Button>
+            </div>
+          </div>
+        </Col>
+        <Col xs={24} md={12}>
+          <div
+            style={{
+              ...collectionOverlayStyle,
+              backgroundImage:
+                'url("https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=720")',
+            }}>
+            <div style={collectionContentStyle}>
+              <div style={collectionTextStyle}>PREFER CUSTOMER 2025</div>
+              <h3 style={collectionTitleStyle}>Winter Collection</h3>
+              <Button style={shopButtonStyle}>Shop Now</Button>
+            </div>
+          </div>
+        </Col>
+      </Row>
     </Content>
   );
 };
