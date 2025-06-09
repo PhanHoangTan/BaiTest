@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Layout } from "antd";
+import { useCart } from "../context/CartContext";
 
 // Import các components con
 import AppHeader from "./Header";
@@ -16,7 +17,7 @@ import { categories } from "../models/Category";
 const Home: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
-  const [cartCount, setCartCount] = useState<number>(0); // Thêm state cho số lượng sản phẩm trong giỏ
+  const { cartCount } = useCart(); // Use the shared cart context
 
   // Xử lý responsive
   useEffect(() => {
@@ -62,33 +63,27 @@ const Home: React.FC = () => {
           featuredItems={featuredItems}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
-          cartCount={cartCount} // Truyền cartCount xuống ContentSection
+          cartCount={cartCount}
         />
       </Layout>
-
       {/* Thêm phần Most Popular Products */}
-      <PopularProducts setCartCount={setCartCount} /> {/* Truyền setCartCount xuống PopularProducts */}
-
+      <PopularProducts />
       {/* Thêm phần Promo Banner */}
       <div style={{ padding: "0 20px" }}>
         <PromoBanner />
       </div>
-
       {/* Thêm phần Award And Recognition */}
       <div style={{ padding: "0 20px" }}>
         <AwardRecognition />
       </div>
-
       {/* Thêm phần The Nu Skin Way */}
       <div style={{ padding: "0 20px" }}>
         <CompanyImpact />
       </div>
-
       {/* Thêm phần Nu Skin In The News */}
       <div style={{ padding: "0 20px" }}>
         <NewsSection />
       </div>
-
       <AppFooter />
     </Layout>
   );

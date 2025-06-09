@@ -3,25 +3,19 @@ import { Card, Button, Tabs, Carousel, Row, Col, message } from "antd";
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 import productController from "../controllers/ProductController";
 import type { Product } from "../models/Product";
+import { useCart } from "../context/CartContext";
 
 const { TabPane } = Tabs;
 
 // Theme color
 const themeColor = "#5b1d5b";
 
-interface PopularProductsProps {
-  title?: string;
-  setCartCount: (count: number | ((prev: number) => number)) => void;
-}
-
-const PopularProducts: React.FC<PopularProductsProps> = ({
-  title = "Most Popular Products",
-  setCartCount,
-}) => {
+const PopularProducts: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [activeTab, setActiveTab] = useState<string>("description");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const carouselRef = useRef<any>(null);
+  const { incrementCart } = useCart(); // Use the shared cart context
 
   useEffect(() => {
     // Lấy dữ liệu sản phẩm phổ biến từ controller
@@ -34,17 +28,13 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
   const handleAddToCart = (productName: string) => {
     try {
       console.log(`Adding ${productName} to cart`); // Debug
-      setCartCount((prev: number) => {
-        console.log("Previous cart count:", prev, "New count:", prev + 1); // Debug cart count
-        return prev + 1;
-      });
+      incrementCart();
       message.success(`${productName} added to cart successfully!`, 3); // Thông báo 3 giây
     } catch (error) {
       console.error("Error in handleAddToCart:", error);
       message.error("Failed to add product to cart", 3);
     }
   };
-
 
   // Style cho tiêu đề
   const titleSectionStyle: React.CSSProperties = {
@@ -345,8 +335,6 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
         `}
       </style>
 
-     
-
       {/* Tiêu đề và View All */}
       <div
         style={{
@@ -357,7 +345,7 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
         }}>
         <div style={{ flex: 1 }}></div>
         <div style={{ flex: 3, ...titleSectionStyle }}>
-          <h2 style={titleStyle}>{title}</h2>
+          <h2 style={titleStyle}>Most Popular Products</h2>
         </div>
         <div style={{ flex: 1, textAlign: "right" }}>
           <a href="/products" style={{ color: themeColor, fontWeight: "bold" }}>
