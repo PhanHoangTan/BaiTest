@@ -16,6 +16,7 @@ import { categories } from "../models/Category";
 const Home: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
+  const [cartCount, setCartCount] = useState<number>(0); // Thêm state cho số lượng sản phẩm trong giỏ
 
   // Xử lý responsive
   useEffect(() => {
@@ -61,11 +62,12 @@ const Home: React.FC = () => {
           featuredItems={featuredItems}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
+          cartCount={cartCount} // Truyền cartCount xuống ContentSection
         />
       </Layout>
 
       {/* Thêm phần Most Popular Products */}
-      <PopularProducts />
+      <PopularProducts setCartCount={setCartCount} /> {/* Truyền setCartCount xuống PopularProducts */}
 
       {/* Thêm phần Promo Banner */}
       <div style={{ padding: "0 20px" }}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Card, Button, Tabs, Carousel, Row, Col } from "antd";
+import { Card, Button, Tabs, Carousel, Row, Col, message } from "antd";
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 import productController from "../controllers/ProductController";
 import type { Product } from "../models/Product";
@@ -11,10 +11,12 @@ const themeColor = "#5b1d5b";
 
 interface PopularProductsProps {
   title?: string;
+  setCartCount: (count: number | ((prev: number) => number)) => void;
 }
 
 const PopularProducts: React.FC<PopularProductsProps> = ({
   title = "Most Popular Products",
+  setCartCount,
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [activeTab, setActiveTab] = useState<string>("description");
@@ -24,8 +26,30 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
   useEffect(() => {
     // Lấy dữ liệu sản phẩm phổ biến từ controller
     const popularProducts = productController.getPopularProducts();
+    console.log("Popular products:", popularProducts); // Debug dữ liệu
     setProducts(popularProducts);
   }, []);
+
+  // Hàm xử lý khi nhấn "Add to cart"
+  const handleAddToCart = (productName: string) => {
+    try {
+      console.log(`Adding ${productName} to cart`); // Debug
+      setCartCount((prev: number) => {
+        console.log("Previous cart count:", prev, "New count:", prev + 1); // Debug cart count
+        return prev + 1;
+      });
+      message.success(`${productName} added to cart successfully!`, 3); // Thông báo 3 giây
+    } catch (error) {
+      console.error("Error in handleAddToCart:", error);
+      message.error("Failed to add product to cart", 3);
+    }
+  };
+
+  // Hàm kiểm tra message.success
+  const testMessage = () => {
+    console.log("Testing message.success");
+    message.success("Test message displayed!", 3);
+  };
 
   // Style cho tiêu đề
   const titleSectionStyle: React.CSSProperties = {
@@ -136,7 +160,7 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
   const carouselContainerStyle: React.CSSProperties = {
     position: "relative",
     padding: "0 40px",
-    marginBottom: "40px", // Tăng margin-bottom để đảm bảo dots hiển thị đầy đủ
+    marginBottom: "40px",
   };
 
   const carouselArrowStyle: React.CSSProperties = {
@@ -243,7 +267,6 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
         },
       },
     ],
-    // Thêm style cho dots
     dotStyle: carouselDotStyle,
     dotsClass: "slick-dots slick-dots-black",
     activeDotStyle: carouselActiveDotStyle,
@@ -251,7 +274,7 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
 
   return (
     <div className="popular-products" style={{ padding: "20px" }}>
-      {/* CSS nội tuyến để tùy chỉnh dots */}
+      {/* CSS nội tuyến để tùy chỉnh dots và thông báo */}
       <style>
         {`
           /* CSS tùy chỉnh cho dots của carousel */
@@ -300,7 +323,7 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
             box-shadow: 0 0 8px rgba(0,0,0,0.8) !important;
           }
           .slick-dots-black li button:before {
-            content: '' !important;
+            потол: '' !important;
             display: none !important;
           }
           
@@ -308,8 +331,31 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
           .slick-slider {
             margin-bottom: 50px !important;
           }
+
+          /* Đảm bảo thông báo Ant Design hiển thị */
+          .ant-message {
+            z-index: 10000 !important;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            max-width: 90%;
+          }
+          .ant-message-notice-content {
+            padding: 10px 16px !important;
+            border-radius: 4px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+          }
         `}
       </style>
+
+      {/* Nút kiểm tra message.success */}
+      <div style={{ marginBottom: "20px", textAlign: "center" }}>
+        <Button type="primary" onClick={testMessage}>
+          Test Message
+        </Button>
+      </div>
 
       {/* Tiêu đề và View All */}
       <div
@@ -325,7 +371,7 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
         </div>
         <div style={{ flex: 1, textAlign: "right" }}>
           <a href="/products" style={{ color: themeColor, fontWeight: "bold" }}>
-            View All &gt;&gt;
+            View All
           </a>
         </div>
       </div>
@@ -457,7 +503,10 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
                         </div>
                       </div>
                     </div>
-                    <Button style={addToCartStyle} type="primary">
+                    <Button
+                      style={addToCartStyle}
+                      type="primary"
+                      onClick={() => handleAddToCart(product.name)}>
                       Add to cart
                     </Button>
                   </Card>

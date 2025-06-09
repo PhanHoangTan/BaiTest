@@ -23,11 +23,13 @@ interface ContentProps {
   }[];
   searchTerm: string;
   setSearchTerm: (term: string) => void;
+  cartCount: number; // Thêm prop cartCount
 }
 
 const ContentSection: React.FC<ContentProps> = ({
   searchTerm,
   setSearchTerm,
+  cartCount, // Nhận cartCount từ props
 }) => {
   const contentStyle: React.CSSProperties = {
     minHeight: "calc(100vh - 134px)",
@@ -189,7 +191,7 @@ const ContentSection: React.FC<ContentProps> = ({
           </div>
           <div style={iconBoxStyle}>
             <FontAwesomeIcon icon={faCartShopping} style={actionIconStyle} />
-            <span style={countStyle}>0</span>
+            <span style={countStyle}>{cartCount}</span> {/* Hiển thị số lượng sản phẩm trong giỏ */}
           </div>
         </div>
       </div>
