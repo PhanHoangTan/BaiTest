@@ -18,6 +18,7 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [activeTab, setActiveTab] = useState<string>("description");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const carouselRef = useRef<any>(null);
 
   useEffect(() => {
@@ -72,13 +73,6 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
     objectFit: "contain",
     background: "#fff",
     padding: "10px",
-  };
-
-  const productDetailsStyle: React.CSSProperties = {
-    padding: "15px",
-    display: "flex",
-    flexDirection: "column",
-    flexGrow: 1,
   };
 
   const brandStyle: React.CSSProperties = {
@@ -136,21 +130,13 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
     width: "100%",
     marginTop: "auto",
     height: "40px",
-  };
-
-  const viewAllStyle: React.CSSProperties = {
-    display: "flex",
-    justifyContent: "flex-end",
-    marginTop: "10px",
-    marginRight: "20px",
-    fontWeight: "bold",
-    color: themeColor,
-    fontSize: "14px",
+    marginBottom: "20px",
   };
 
   const carouselContainerStyle: React.CSSProperties = {
     position: "relative",
     padding: "0 40px",
+    marginBottom: "40px", // Thêm margin-bottom để đảm bảo dots hiển thị đầy đủ
   };
 
   const carouselArrowStyle: React.CSSProperties = {
@@ -219,6 +205,21 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
     transform: "rotate(-15deg)",
   };
 
+  // Style cho dots của carousel
+  const carouselDotStyle = {
+    width: "10px",
+    height: "10px",
+    borderRadius: "50%",
+    backgroundColor: "#d9d9d9",
+  };
+
+  const carouselActiveDotStyle = {
+    width: "10px",
+    height: "10px",
+    borderRadius: "50%",
+    backgroundColor: "#000",
+  };
+
   const carouselSettings = {
     dots: true,
     arrows: false,
@@ -240,10 +241,58 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
         },
       },
     ],
+    // Thêm style cho dots
+    dotStyle: carouselDotStyle,
+    dotsClass: "slick-dots slick-dots-black",
+    activeDotStyle: carouselActiveDotStyle,
   };
 
   return (
     <div className="popular-products" style={{ padding: "20px" }}>
+      {/* CSS nội tuyến để tùy chỉnh dots */}
+      <style>
+        {`
+          /* CSS tùy chỉnh cho dots của carousel */
+          .slick-dots-black {
+            position: absolute;
+            bottom: -30px;
+            display: block;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-align: center;
+          }
+          .slick-dots-black li {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            padding: 0;
+            cursor: pointer;
+          }
+          .slick-dots-black li button {
+            background-color: #333 !important;
+            width: 12px !important;
+            height: 12px !important;
+            border-radius: 50%;
+            opacity: 0.3;
+            padding: 0;
+            border: none;
+            cursor: pointer;
+          }
+          .slick-dots-black li.slick-active button {
+            background-color: #000 !important;
+            opacity: 1;
+          }
+          .slick-dots-black li button:before {
+            content: '' !important;
+            display: none !important;
+          }
+        `}
+      </style>
+
       {/* Tiêu đề và View All */}
       <div
         style={{
