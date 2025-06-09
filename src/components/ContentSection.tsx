@@ -6,6 +6,7 @@ import {
   faHeart,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Nav from "./Nav";
 
 const { Content } = Layout;
@@ -23,14 +24,16 @@ interface ContentProps {
   }[];
   searchTerm: string;
   setSearchTerm: (term: string) => void;
-  cartCount: number; // Thêm prop cartCount
+  cartCount: number;
 }
 
 const ContentSection: React.FC<ContentProps> = ({
   searchTerm,
   setSearchTerm,
-  cartCount, // Nhận cartCount từ props
+  cartCount,
 }) => {
+  const navigate = useNavigate(); // Initialize navigate
+
   const contentStyle: React.CSSProperties = {
     minHeight: "calc(100vh - 134px)",
     background: "#fff",
@@ -156,6 +159,13 @@ const ContentSection: React.FC<ContentProps> = ({
     color: "#333",
   };
 
+  // Handle search button click
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      navigate(`/detail?search=${encodeURIComponent(searchTerm)}`);
+    }
+  };
+
   return (
     <Content style={contentStyle}>
       {/* Search section */}
@@ -173,6 +183,7 @@ const ContentSection: React.FC<ContentProps> = ({
                 type="text"
                 icon={<FontAwesomeIcon icon={faSearch} style={iconStyle} />}
                 style={{ border: "none" }}
+                onClick={handleSearch} // Add onClick handler
               />
             }
           />
@@ -191,7 +202,7 @@ const ContentSection: React.FC<ContentProps> = ({
           </div>
           <div style={iconBoxStyle}>
             <FontAwesomeIcon icon={faCartShopping} style={actionIconStyle} />
-            <span style={countStyle}>{cartCount}</span> {/* Hiển thị số lượng sản phẩm trong giỏ */}
+            <span style={countStyle}>{cartCount}</span>
           </div>
         </div>
       </div>
