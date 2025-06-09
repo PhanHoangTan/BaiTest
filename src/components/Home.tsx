@@ -9,6 +9,7 @@ import AppFooter from "./Footer";
 import PopularProducts from "./PopularProducts";
 import PromoBanner from "./PromoBanner";
 import AwardRecognition from "./AwardRecognition";
+import CompanyImpact from "./CompanyImpact";
 import { categories } from "../models/Category";
 
 const Home: React.FC = () => {
@@ -73,6 +74,11 @@ const Home: React.FC = () => {
       {/* Thêm phần Award And Recognition */}
       <div style={{ padding: "0 20px" }}>
         <AwardRecognition />
+      </div>
+
+      {/* Thêm phần The Nu Skin Way */}
+      <div style={{ padding: "0 20px" }}>
+        <CompanyImpact />
       </div>
 
       <AppFooter />
