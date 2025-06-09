@@ -10,6 +10,7 @@ import PopularProducts from "./PopularProducts";
 import PromoBanner from "./PromoBanner";
 import AwardRecognition from "./AwardRecognition";
 import CompanyImpact from "./CompanyImpact";
+import NewsSection from "./NewsSection";
 import { categories } from "../models/Category";
 
 const Home: React.FC = () => {
@@ -79,6 +80,11 @@ const Home: React.FC = () => {
       {/* Thêm phần The Nu Skin Way */}
       <div style={{ padding: "0 20px" }}>
         <CompanyImpact />
+      </div>
+
+      {/* Thêm phần Nu Skin In The News */}
+      <div style={{ padding: "0 20px" }}>
+        <NewsSection />
       </div>
 
       <AppFooter />
