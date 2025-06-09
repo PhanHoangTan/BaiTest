@@ -6,6 +6,7 @@ import AppHeader from "./Header";
 import AppSider from "./Sider";
 import ContentSection from "./ContentSection";
 import AppFooter from "./Footer";
+import PopularProducts from "./PopularProducts";
 import { categories } from "../models/Category";
 
 const Home: React.FC = () => {
@@ -58,6 +59,10 @@ const Home: React.FC = () => {
           setSearchTerm={setSearchTerm}
         />
       </Layout>
+
+      {/* Thêm phần Most Popular Products */}
+      <PopularProducts />
+
       <AppFooter />
     </Layout>
   );
