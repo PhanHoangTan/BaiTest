@@ -7,6 +7,7 @@ import AppSider from "./Sider";
 import ContentSection from "./ContentSection";
 import AppFooter from "./Footer";
 import PopularProducts from "./PopularProducts";
+import PromoBanner from "./PromoBanner";
 import { categories } from "../models/Category";
 
 const Home: React.FC = () => {
@@ -62,6 +63,11 @@ const Home: React.FC = () => {
 
       {/* Thêm phần Most Popular Products */}
       <PopularProducts />
+
+      {/* Thêm phần Promo Banner */}
+      <div style={{ padding: "0 20px" }}>
+        <PromoBanner />
+      </div>
 
       <AppFooter />
     </Layout>
