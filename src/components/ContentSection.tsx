@@ -209,7 +209,15 @@ const ContentSection: React.FC<ContentProps> = ({
             <div style={bannerContentStyle}>
               <div style={bannerSubtitleStyle}>10% OFF YOUR FIRST ORDER</div>
               <h2 style={bannerTitleStyle}>Reasonable Price</h2>
-              <Button style={shopButtonStyle}>Shop Now</Button>
+              <Button
+                type="default"
+                style={{
+                  ...shopButtonStyle,
+                  background: "#ffffff",
+                  color: "#000000",
+                }}>
+                Shop Now
+              </Button>
             </div>
           </div>
         </div>
@@ -226,7 +234,15 @@ const ContentSection: React.FC<ContentProps> = ({
             <div style={bannerContentStyle}>
               <div style={bannerSubtitleStyle}>NEW SEASON ARRIVALS</div>
               <h2 style={bannerTitleStyle}>Summer Collection</h2>
-              <Button style={shopButtonStyle}>Shop Now</Button>
+              <Button
+                type="default"
+                style={{
+                  ...shopButtonStyle,
+                  background: "#ffffff",
+                  color: "#000000",
+                }}>
+                Shop Now
+              </Button>
             </div>
           </div>
         </div>
@@ -243,7 +259,15 @@ const ContentSection: React.FC<ContentProps> = ({
             <div style={bannerContentStyle}>
               <div style={bannerSubtitleStyle}>SPECIAL OFFER</div>
               <h2 style={bannerTitleStyle}>Elegant Style</h2>
-              <Button style={shopButtonStyle}>Shop Now</Button>
+              <Button
+                type="default"
+                style={{
+                  ...shopButtonStyle,
+                  background: "#ffffff",
+                  color: "#000000",
+                }}>
+                Shop Now
+              </Button>
             </div>
           </div>
         </div>
@@ -260,7 +284,15 @@ const ContentSection: React.FC<ContentProps> = ({
             <div style={bannerContentStyle}>
               <div style={bannerSubtitleStyle}>PREMIUM QUALITY</div>
               <h2 style={bannerTitleStyle}>Designer Collection</h2>
-              <Button style={shopButtonStyle}>Shop Now</Button>
+              <Button
+                type="default"
+                style={{
+                  ...shopButtonStyle,
+                  background: "#ffffff",
+                  color: "#000000",
+                }}>
+                Shop Now
+              </Button>
             </div>
           </div>
         </div>
@@ -278,7 +310,14 @@ const ContentSection: React.FC<ContentProps> = ({
             <div style={collectionContentStyle}>
               <div style={collectionTextStyle}>PREFER CUSTOMER 2025</div>
               <h3 style={collectionTitleStyle}>Winter Collection</h3>
-              <Button style={shopButtonStyle}>Shop Now</Button>
+              <Button
+                type="default"
+                style={{
+                  ...shopButtonStyle,
+                  background: "transparent !important",
+                }}>
+                Shop Now
+              </Button>
             </div>
           </div>
         </Col>
@@ -292,7 +331,14 @@ const ContentSection: React.FC<ContentProps> = ({
             <div style={collectionContentStyle}>
               <div style={collectionTextStyle}>PREFER CUSTOMER 2025</div>
               <h3 style={collectionTitleStyle}>Winter Collection</h3>
-              <Button style={shopButtonStyle}>Shop Now</Button>
+              <Button
+                type="default"
+                style={{
+                  ...shopButtonStyle,
+                  background: "transparent !important",
+                }}>
+                Shop Now
+              </Button>
             </div>
           </div>
         </Col>
