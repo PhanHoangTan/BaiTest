@@ -8,6 +8,7 @@ import ContentSection from "./ContentSection";
 import AppFooter from "./Footer";
 import PopularProducts from "./PopularProducts";
 import PromoBanner from "./PromoBanner";
+import AwardRecognition from "./AwardRecognition";
 import { categories } from "../models/Category";
 
 const Home: React.FC = () => {
@@ -67,6 +68,11 @@ const Home: React.FC = () => {
       {/* Thêm phần Promo Banner */}
       <div style={{ padding: "0 20px" }}>
         <PromoBanner />
+      </div>
+
+      {/* Thêm phần Award And Recognition */}
+      <div style={{ padding: "0 20px" }}>
+        <AwardRecognition />
       </div>
 
       <AppFooter />
