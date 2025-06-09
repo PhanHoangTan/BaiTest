@@ -45,11 +45,6 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
     }
   };
 
-  // Hàm kiểm tra message.success
-  const testMessage = () => {
-    console.log("Testing message.success");
-    message.success("Test message displayed!", 3);
-  };
 
   // Style cho tiêu đề
   const titleSectionStyle: React.CSSProperties = {
@@ -350,12 +345,7 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
         `}
       </style>
 
-      {/* Nút kiểm tra message.success */}
-      <div style={{ marginBottom: "20px", textAlign: "center" }}>
-        <Button type="primary" onClick={testMessage}>
-          Test Message
-        </Button>
-      </div>
+     
 
       {/* Tiêu đề và View All */}
       <div
