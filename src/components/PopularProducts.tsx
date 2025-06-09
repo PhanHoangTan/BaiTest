@@ -130,13 +130,13 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
     width: "100%",
     marginTop: "auto",
     height: "40px",
-    marginBottom: "20px",
+    marginBottom: "30px",
   };
 
   const carouselContainerStyle: React.CSSProperties = {
     position: "relative",
     padding: "0 40px",
-    marginBottom: "40px", // Thêm margin-bottom để đảm bảo dots hiển thị đầy đủ
+    marginBottom: "40px", // Tăng margin-bottom để đảm bảo dots hiển thị đầy đủ
   };
 
   const carouselArrowStyle: React.CSSProperties = {
@@ -207,17 +207,19 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
 
   // Style cho dots của carousel
   const carouselDotStyle = {
-    width: "10px",
-    height: "10px",
+    width: "15px",
+    height: "15px",
     borderRadius: "50%",
-    backgroundColor: "#d9d9d9",
+    backgroundColor: "#000000",
+    border: "2px solid #000000",
   };
 
   const carouselActiveDotStyle = {
-    width: "10px",
-    height: "10px",
+    width: "15px",
+    height: "15px",
     borderRadius: "50%",
-    backgroundColor: "#000",
+    backgroundColor: "#000000",
+    border: "2px solid #000000",
   };
 
   const carouselSettings = {
@@ -255,40 +257,56 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
           /* CSS tùy chỉnh cho dots của carousel */
           .slick-dots-black {
             position: absolute;
-            bottom: -30px;
-            display: block;
+            bottom: -35px !important;
+            display: block !important;
             width: 100%;
             padding: 0;
             margin: 0;
             list-style: none;
             text-align: center;
+            z-index: 10;
           }
           .slick-dots-black li {
             position: relative;
             display: inline-block;
             width: 20px;
             height: 20px;
-            margin: 0 5px;
+            margin: 0 10px !important;
             padding: 0;
             cursor: pointer;
           }
           .slick-dots-black li button {
-            background-color: #333 !important;
-            width: 12px !important;
-            height: 12px !important;
-            border-radius: 50%;
-            opacity: 0.3;
-            padding: 0;
-            border: none;
+            font-size: 0;
+            line-height: 0;
+            display: block;
+            width: 15px !important;
+            height: 15px !important;
+            padding: 0 !important;
             cursor: pointer;
+            color: transparent;
+            border: 0;
+            outline: none;
+            background-color: #000 !important;
+            border: 2px solid #000 !important;
+            border-radius: 50%;
+            opacity: 0.7 !important;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5) !important;
           }
           .slick-dots-black li.slick-active button {
             background-color: #000 !important;
-            opacity: 1;
+            opacity: 1 !important;
+            width: 15px !important;
+            height: 15px !important;
+            box-shadow: 0 0 8px rgba(0,0,0,0.8) !important;
           }
           .slick-dots-black li button:before {
             content: '' !important;
             display: none !important;
+          }
+          
+          /* Đảm bảo dots không bị che */
+          .slick-slider {
+            margin-bottom: 50px !important;
           }
         `}
       </style>
@@ -394,7 +412,11 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
               <LeftOutlined />
             </div>
 
-            <Carousel ref={carouselRef} {...carouselSettings}>
+            {/* Sử dụng Carousel với reference */}
+            <Carousel
+              ref={carouselRef}
+              {...carouselSettings}
+              style={{ marginBottom: "50px" }}>
               {products.map((product) => (
                 <div key={product.id} style={{ padding: "0 10px" }}>
                   <Card bodyStyle={{ padding: 0 }} style={productCardStyle}>
